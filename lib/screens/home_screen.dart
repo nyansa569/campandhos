@@ -4,6 +4,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import 'screens.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
   int currentindex;
   HomeScreen({super.key, this.currentindex = 0});
