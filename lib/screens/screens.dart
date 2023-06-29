@@ -1,0 +1,11 @@
+export './search_screen.dart';
+export 'schools_screen.dart';
+export './hostels_screen.dart';
+export './detailed_hostel.dart';
+export './rooms_screen.dart';
+export './home_screen.dart';
+export './account_screen.dart';
+export './room_booking.dart';
+export './news_screen.dart';
+export './notifications_screen.dart';
+export './maps_screen.dart';
