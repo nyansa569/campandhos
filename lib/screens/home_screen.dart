@@ -18,7 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
     NewsScreen(),
     SearchScreen(),
     NotificationScreen(),
-    AccountScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -48,7 +47,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     )
                   : const SizedBox(width: 0, height: 0),
-          leading: const SizedBox(width: 0, height: 0),
+          leading: widget.currentindex == 0
+              ? GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      CupertinoPageRoute(
+                        builder: (context) => AccountScreen(),
+                      ),
+                    );
+                  },
+                  child: Icon(
+                    PlatformIcons(context).person,
+                    size: 30,
+                  ),
+                )
+              : const SizedBox(width: 0, height: 0),
           middle: widget.currentindex == 0
               ? const Text("News feed")
               : widget.currentindex == 1
@@ -81,11 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
               PlatformIcons(context).dehaze,
             ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              PlatformIcons(context).person,
-            ),
-          ),
+          //  ]
         ],
         material: (_, __) => MaterialNavBarData(
           backgroundColor: Colors.blue,

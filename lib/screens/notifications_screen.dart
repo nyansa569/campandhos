@@ -12,10 +12,10 @@ class NotificationScreen extends StatelessWidget {
           child: ListView.builder(
             itemCount: 10,
             itemBuilder: (context, index) => NotificationsCard(
-              schoolName: 'school name',
+              schoolName: 'school',
               title: 'Title',
               description: 'description',
-              date: DateTime.now(),
+              date: DateTime.now().hour,
             ),
           ),
         ),
@@ -28,7 +28,7 @@ class NotificationsCard extends StatelessWidget {
   final String schoolName;
   final String title;
   final String description;
-  final DateTime date;
+  final int date;
   const NotificationsCard({
     super.key,
     required this.date,
@@ -40,75 +40,58 @@ class NotificationsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 10),
-      padding: EdgeInsets.all(5),
-      height: MediaQuery.of(context).size.height * 0.15,
+      margin: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.all(9),
+      // height: MediaQuery.of(context).size.height * 0.1,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.black12,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Row(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            padding: EdgeInsets.all(5),
-            width: MediaQuery.of(context).size.width * 0.65,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: Text(
                   schoolName,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 15,
                   ),
                 ),
-                Text(
-                  title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
+              ),
+              Text(
+                '$date hours ago',
+                maxLines: 1,
+                overflow: TextOverflow.clip,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.black26,
                 ),
-                Text(
-                  description,
-                  maxLines: 4,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-              ],
+              ),
+            ],
+          ),
+          Text(
+            title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
             ),
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.3,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '$date',
-                  maxLines: 1,
-                  overflow: TextOverflow.clip,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.black26,
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.width * 0.25,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.white,
-                  ),
-                )
-              ],
+          Text(
+            description,
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontSize: 15,
             ),
           ),
         ],

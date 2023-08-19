@@ -15,7 +15,7 @@ class _MapsScreenState extends State<MapsScreen> {
   Widget build(BuildContext context) {
     return PlatformScaffold(
       cupertino: (_, __) => CupertinoPageScaffoldData(
-        navigationBar: CupertinoNavigationBar(
+        navigationBar: const CupertinoNavigationBar(
           middle: Text('maps'),
         ),
         body: Card(
@@ -24,25 +24,17 @@ class _MapsScreenState extends State<MapsScreen> {
           child: Column(
             children: [
               Expanded(
-                child: destinationController.text.isEmpty
-                    ? Container(
-                        color: Colors.blue,
-                        child: Center(
-                          child: Text('maps'),
-                        ),
-                      )
-                    : Container(
-                        color: Colors.green,
-                        child: Center(
-                          child: Text('search'),
-                        ),
-                      ),
-              ),
+                  child: Container(
+                color: Colors.blue,
+                child: const Center(
+                  child: Text('maps'),
+                ),
+              )),
               Container(
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.4,
+                height: MediaQuery.of(context).size.height * 0.3,
                 decoration: BoxDecoration(
-                  color: Colors.amber,
+                  color: Colors.black12,
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: Padding(
@@ -53,8 +45,47 @@ class _MapsScreenState extends State<MapsScreen> {
                   child: Column(
                     children: [
                       CupertinoTextField(
-                        padding: EdgeInsets.all(15),
+                        controller: destinationController,
+                        padding: const EdgeInsets.all(9),
+                        placeholder: 'Enter Location',
+                        prefix: const Padding(
+                          padding: EdgeInsets.only(left: 8.0),
+                          child: Icon(
+                            CupertinoIcons.location_fill,
+                            color: Colors.blue,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      CupertinoTextField(
+                        controller: destinationController,
+                        padding: const EdgeInsets.all(9),
                         placeholder: 'Enter Destination',
+                        prefix: const Padding(
+                          padding: EdgeInsets.only(left: 8.0),
+                          child: Icon(
+                            CupertinoIcons.location_fill,
+                            color: Colors.blue,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Text(
+                          'Search',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ],
                   ),

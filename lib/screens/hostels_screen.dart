@@ -6,6 +6,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import '../widgets/widget.dart';
 import 'screens.dart';
 
+// ignore: must_be_immutable
 class HostelsScreen extends StatelessWidget {
   final School sData;
   HostelsScreen({super.key, required this.sData});
