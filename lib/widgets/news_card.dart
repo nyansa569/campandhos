@@ -1,27 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class PostCard extends StatelessWidget {
+class NewsCard extends StatelessWidget {
   final String schoolName;
-  final int date;
+  final DateTime date;
   final String title;
   final String description;
+  final String image;
 
-  const PostCard({
+  const NewsCard({
     super.key,
     required this.schoolName,
     required this.description,
     required this.date,
     required this.title,
+    required this.image,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      margin: const EdgeInsets.only(top: 10),
+      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.20,
+      height: MediaQuery.of(context).size.height * 0.19,
       decoration: BoxDecoration(
         color: Colors.black12,
         borderRadius: BorderRadius.circular(12),
@@ -43,15 +45,15 @@ class PostCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                        fontSize: MediaQuery.of(context).size.height * 0.018,
                       ),
                     ),
                     Text(
-                      '$date hours ago',
+                      '$date',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: MediaQuery.of(context).size.height * 0.011,
                         color: Colors.black26,
                       ),
                     ),
@@ -63,7 +65,7 @@ class PostCard extends StatelessWidget {
               )
             ],
           ),
-          Spacer(),
+          const Spacer(),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -71,8 +73,12 @@ class PostCard extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.25,
                 height: MediaQuery.of(context).size.width * 0.28,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.white54,
                   borderRadius: BorderRadius.circular(12),
+                  image: DecorationImage(
+                    image: NetworkImage(image),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Spacer(),
@@ -87,7 +93,7 @@ class PostCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 15,
+                        fontSize: MediaQuery.of(context).size.height * 0.016,
                       ),
                     ),
                     Text(
@@ -95,7 +101,7 @@ class PostCard extends StatelessWidget {
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: MediaQuery.of(context).size.height * 0.015,
                       ),
                     ),
                   ],

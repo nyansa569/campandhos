@@ -7,69 +7,62 @@ import 'screens.dart';
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
   int currentindex;
-  HomeScreen({super.key, this.currentindex = 0});
+  final token;
+  HomeScreen({super.key, this.currentindex = 0, required this.token});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var screens = const <Widget>[
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  var screens = <Widget>[
     NewsScreen(),
-    SearchScreen(),
-    NotificationScreen(),
+    MapsScreen(),
+    HostelsScreen(),
   ];
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
       cupertino: (_, __) => CupertinoPageScaffoldData(
-        navigationBar: CupertinoNavigationBar(
-          trailing: widget.currentindex == 3
-              ? PlatformIconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    PlatformIcons(context).settings,
-                    color: Colors.black,
-                  ),
-                )
-              : widget.currentindex == 0
-                  ? PlatformIconButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          CupertinoPageRoute(
-                            builder: (context) => MapsScreen(),
-                          ),
-                        );
-                      },
-                      icon: Icon(
-                        CupertinoIcons.globe,
-                        color: Colors.black54,
-                      ),
-                    )
-                  : const SizedBox(width: 0, height: 0),
-          leading: widget.currentindex == 0
-              ? GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      CupertinoPageRoute(
-                        builder: (context) => AccountScreen(),
-                      ),
-                    );
-                  },
-                  child: Icon(
-                    PlatformIcons(context).person,
-                    size: 30,
-                  ),
-                )
-              : const SizedBox(width: 0, height: 0),
-          middle: widget.currentindex == 0
-              ? const Text("News feed")
-              : widget.currentindex == 1
-                  ? const Text("Search")
-                  : widget.currentindex == 2
-                      ? const Text("Notification")
-                      : const Text("Accounts"),
-        ),
+        navigationBar: widget.currentindex == 1
+            ? null
+            : CupertinoNavigationBar(
+                trailing: widget.currentindex == 3
+                    ? PlatformIconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          PlatformIcons(context).settings,
+                          color: Colors.black,
+                        ),
+                      )
+                    : const SizedBox(width: 0, height: 0),
+                leading: widget.currentindex == 0
+                    ? GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            CupertinoPageRoute(
+                              builder: (context) => AccountScreen(
+                                token: widget.token,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Icon(
+                          PlatformIcons(context).person,
+                          size: 30,
+                        ),
+                      )
+                    : const SizedBox(width: 0, height: 0),
+                middle: widget.currentindex == 0
+                    ? const Text("News feed")
+                    : const Text("Hostels"),
+              ),
       ),
       body: IndexedStack(
         index: widget.currentindex,
@@ -81,17 +74,17 @@ class _HomeScreenState extends State<HomeScreen> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(
+              CupertinoIcons.news_solid,
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              CupertinoIcons.globe,
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
               PlatformIcons(context).home,
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              PlatformIcons(context).search,
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              PlatformIcons(context).dehaze,
             ),
           ),
           //  ]

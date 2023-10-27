@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cnahr">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="cnahr"
         android:name="${applicationName}"
@@ -30,5 +31,9 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data 
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA2ti7lTM1WQukUYCNdse9YXzlEREYreg8"
+        />
     </application>
 </manifest>

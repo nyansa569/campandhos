@@ -55,6 +55,9 @@ class _CustomSliderWidgetState extends State<CustomSliderWidget> {
                       GestureDetector(
                         onVerticalDragUpdate: onDrag,
                         onVerticalDragEnd: onDragEnd,
+                        // onHorizontalDragCancel: () => setState(() {
+                        //   widget.value = 0;
+                        // }),
                         child: Center(
                           child: Container(
                             height: 55,
